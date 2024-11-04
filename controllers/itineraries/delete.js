@@ -2,8 +2,9 @@ import Itinerary from '../../models/Itinerary.js'
 
 let deleteOne = async (req, res, next) => {
     try {
-        let deleteItinerary = await Itinerary.deleteOne({ //eliminara el primero que encuentre
-            name: req.body.name
+        let deleteItinerary = await Itinerary.deleteOne({
+
+            _id: req.body._id
         })
         return res.status(200).json({
             response: deleteItinerary
@@ -17,7 +18,7 @@ let deleteOne = async (req, res, next) => {
 
 let deleteMany = async (req, res, next) => {
     try {
-        let deleteItineraries = await Itinerary.deleteMany({ //eliminara varios
+        let deleteItineraries = await Itinerary.deleteMany({
             name: req.body.name
 
         })
@@ -31,5 +32,20 @@ let deleteMany = async (req, res, next) => {
 
 }
 
+let deleteFindOne = async (req, res, next) => {
+    try {
+        let deleteCity = await Itinerary.findOneAndDelete({
+            name: req.body.name
 
-export { deleteOne, deleteMany }
+        })
+        return res.status(200).json({
+            response: deleteCity
+        })
+    } catch (error) {
+        next(error)
+    }
+
+
+}
+
+export { deleteOne, deleteMany, deleteFindOne }

@@ -4,11 +4,15 @@ import City from "../../models/City.js"
 const update = async (req, res, next) => {
 
     try {
-
         let city = req.body
-        await City.updateOne(
+        let upd = await City.updateOne(
             { _id: city._id },
-            { name: city.name }
+            {
+                name: city.name,
+
+            },
+
+
 
         )
         if (upd) {

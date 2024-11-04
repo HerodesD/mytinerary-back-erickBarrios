@@ -2,8 +2,8 @@ import City from "../../models/City.js"
 
 let deleteOne = async (req, res, next) => {
     try {
-        let deleteCity = await City.deleteOne({ //eliminara el primero que encuentre
-            name: req.body.name
+        let deleteCity = await City.deleteOne({
+            _id: req.body._id
         })
         return res.status(200).json({
             response: deleteCity
@@ -17,7 +17,7 @@ let deleteOne = async (req, res, next) => {
 
 let deleteMany = async (req, res, next) => {
     try {
-        let deleteCities = await City.deleteMany({ //eliminara varios
+        let deleteCities = await City.deleteMany({
             name: req.body.name
 
         })
@@ -33,7 +33,7 @@ let deleteMany = async (req, res, next) => {
 
 let deleteFindOne = async (req, res, next) => {
     try {
-        let deleteCity = await City.findOneAndDelete({ //elimina uno y muestra que fue lo que se elimino
+        let deleteCity = await City.findOneAndDelete({
             name: req.body.name
 
         })
@@ -46,21 +46,6 @@ let deleteFindOne = async (req, res, next) => {
 
 
 }
-let deleteById = async (req, res, next) => {
-    try {
-        let deleteById = await City.findByIdAndDelete({
-            _id: req.params._id
-
-        })
-        return res.status(200).json({
-            response: deleteById
-        })
-    } catch (error) {
-        next(error)
-    }
 
 
-}
-
-
-export { deleteOne, deleteMany, deleteFindOne, deleteById }
+export { deleteOne, deleteMany, deleteFindOne }

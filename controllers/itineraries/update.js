@@ -4,10 +4,10 @@ const update = async (req, res, next) => {
 
     try {
 
-        let itinerary = req.body
-        await Itinerary.updateOne(
-            { _id: itinerary._id },
-            { name: itinerary.name }
+        let itineraries = req.body
+        let upd = await Itinerary.updateOne(
+            { _id: itineraries._id },
+            { itinerary: itineraries.name }
 
         )
         if (upd) {

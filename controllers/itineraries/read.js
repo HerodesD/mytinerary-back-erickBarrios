@@ -11,7 +11,7 @@ let allItineraries = async (req, res, next) => {
             query.name = { $regex: '^' + name, $options: 'i' }
         }
 
-        let itineraries = await Itinerary.find(query)
+        let itineraries = await Itinerary.find(query).populate('itinerary', 'photo name price duration likes hashtags comments').exec();
         return res.status(200).json({
             response: itineraries
         })
@@ -25,7 +25,7 @@ let itineraryById = async (req, res, next) => {
 
     try {
         let itineraryQuery = req.params.id
-        let all = await Itinerary.findById(itineraryQuery)
+        let all = await Itinerary.findById(itineraryQuery).populate('itinerary', 'photo name price duration likes hashtags comments').exec();
         return res.status(200).json({
             response: all
         })
