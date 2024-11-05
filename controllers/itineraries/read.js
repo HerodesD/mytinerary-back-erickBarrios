@@ -1,4 +1,6 @@
 import Itinerary from '../../models/Itinerary.js'
+import City from "../../models/City.js"
+
 
 
 
@@ -35,5 +37,29 @@ let itineraryById = async (req, res, next) => {
 }
 
 
+const cityItineraries = async (req, res, next) => {
+    try {
+        const cityId = req.params.id;
+        const cityWithItineraries = await City.findById(cityId).populate('itinerary', 'photo name price duration likes hashtags comments').exec();
 
-export { allItineraries, itineraryById }
+        if (!cityWithItineraries) {
+            return res.status(404).json({
+                message: 'City not found'
+            });
+        }
+        if (cityWithItineraries.itinerary.length === 0) {
+            return res.status(404).json({
+                message: 'No itineraries yet for this city'
+            });
+        }
+        return res.status(200).json({
+            response: cityWithItineraries.itinerary
+        });
+    } catch (error) {
+        next(error)
+    }
+};
+
+
+
+export { allItineraries, itineraryById, cityItineraries }

@@ -11,7 +11,6 @@ let schema = new Schema({
     likes: { type: Number, require: true },
     hashtags: { type: String, require: true },
     comments: { type: String, require: true },
-    //city: [{ type: Schema.Types.ObjectId, ref: 'cities', required: true }]
 
 
 
