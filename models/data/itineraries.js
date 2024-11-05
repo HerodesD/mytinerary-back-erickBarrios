@@ -7,6 +7,7 @@ import Itinerary from "../Itinerary.js/"
 
 
 
+
 let itineraries = [
     { "photo": "https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?auto=compress&cs=tinysrgb&h=204&fit=crop&w=228&dpr=1", "name": "John Smith", "price": "5", "duration": "5 days", "likes": 0, "hashtags": "#Cityscape #AnimeDreams #TravelJoy", "comments": "Amazing journey!" },
     { "photo": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600", "name": "Marie Dupont", "price": "4", "duration": "7 days", "likes": 0, "hashtags": "#EiffelMagic #FrenchRomance #Love", "comments": "Unforgettable experience." },

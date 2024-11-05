@@ -34,12 +34,12 @@ let deleteMany = async (req, res, next) => {
 
 let deleteFindOne = async (req, res, next) => {
     try {
-        let deleteCity = await Itinerary.findOneAndDelete({
+        let deleteItinerary = await Itinerary.findOneAndDelete({
             name: req.body.name
 
         })
         return res.status(200).json({
-            response: deleteCity
+            response: deleteItinerary
         })
     } catch (error) {
         next(error)

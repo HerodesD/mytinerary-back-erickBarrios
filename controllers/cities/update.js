@@ -1,7 +1,31 @@
 import City from "../../models/City.js"
 
 
-const update = async (req, res, next) => {
+
+const updateCities = async (req, res, next) => {
+    try {
+        let itineraries = req.body;
+
+
+        let upd = await City.updateOne(
+            { _id: itineraries._id },
+            { $push: { itinerary: { $each: itineraries.itinerary } } },
+
+        );
+
+        if (upd.matchedCount > 0) {
+            return res.status(200).json({
+                message: 'Itinerary updated successfully',
+                response: upd
+            });
+        }
+    } catch (error) {
+        next(error)
+    }
+};
+
+
+const updateOne = async (req, res, next) => {
 
     try {
         let city = req.body
@@ -11,9 +35,6 @@ const update = async (req, res, next) => {
                 name: city.name,
 
             },
-
-
-
         )
         if (upd) {
             return res.status(200).json({
@@ -21,7 +42,6 @@ const update = async (req, res, next) => {
 
             })
         }
-
 
     } catch (error) {
         next(error)
@@ -33,4 +53,4 @@ const update = async (req, res, next) => {
 
 
 
-export { update }
+export { updateCities, updateOne }

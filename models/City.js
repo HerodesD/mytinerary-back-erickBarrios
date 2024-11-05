@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 
 
+
 let collection = 'cities'
 
 let schema = new Schema({
@@ -15,10 +16,8 @@ let schema = new Schema({
     climate: { type: String, require: true },
     timeZone: { type: String, require: true },
     currency: { type: String, require: true },
-    zipCode: { type: String, require: true }
-
-
-
+    zipCode: { type: String, require: true },
+    itinerary: [{ type: Schema.Types.ObjectId, ref: 'itineraries', required: true }]
 
 }, {
     timestamps: true

@@ -2,6 +2,7 @@ import City from "../../models/City.js"
 
 let allCities = async (req, res, next) => {
     try {
+
         let { name } = req.query
         console.log(name);
         let query = {}
@@ -9,9 +10,10 @@ let allCities = async (req, res, next) => {
             query.name = { $regex: '^' + name, $options: 'i' }
         }
 
-        let cities = await City.find(query)
+        let cities = await City.find(query).populate('itinerary', 'photo name price duration likes hashtags comments').exec();
         return res.status(200).json({
-            response: cities
+            response: cities,
+
         })
     } catch (error) {
         next(error)
@@ -23,7 +25,7 @@ let cityById = async (req, res, next) => {
 
     try {
         let cityQuery = req.params.id
-        let all = await City.findById(cityQuery)
+        let all = await City.findById(cityQuery).populate('itinerary', 'photo name price duration likes hashtags comments').exec();
         return res.status(200).json({
             response: all
         })

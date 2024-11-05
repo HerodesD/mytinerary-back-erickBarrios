@@ -3,12 +3,13 @@ import Itinerary from '../../models/Itinerary.js'
 const update = async (req, res, next) => {
 
     try {
-
-        let itineraries = req.body
+        let itinerary = req.body
         let upd = await Itinerary.updateOne(
-            { _id: itineraries._id },
-            { itinerary: itineraries.name }
+            { _id: itinerary._id },
+            {
+                name: itinerary.name,
 
+            },
         )
         if (upd) {
             return res.status(200).json({
@@ -17,7 +18,6 @@ const update = async (req, res, next) => {
             })
         }
 
-
     } catch (error) {
         next(error)
 
@@ -25,6 +25,8 @@ const update = async (req, res, next) => {
 
 
 }
+
+
 
 
 
