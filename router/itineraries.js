@@ -9,7 +9,7 @@ const router = Router()
 
 router.get('/all', allItineraries)
 router.get('/id/:id', itineraryById)
-router.get('/cities/:id', cityItineraries)
+router.get('/city/:id', cityItineraries)
 router.post('/create', createNewItinerary)
 router.put('/update', update)
 router.delete('/deleteOne', deleteOne)
